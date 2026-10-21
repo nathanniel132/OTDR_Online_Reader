@@ -13,7 +13,10 @@
     <!-- Plotly.js -->
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
     <!-- Custom Stylesheet -->
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="/css/style.css">
+    <script>
+        window.OTDR_API_BASE = '{{ url("") }}';
+    </script>
 </head>
 <body>
 
@@ -417,8 +420,8 @@
     <!-- Bootstrap 5.3 JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- App Scripts -->
-    <script src="{{ asset('js/stateManager.js') }}"></script>
-    <script src="{{ asset('js/traceChart.js') }}"></script>
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="/js/stateManager.js"></script>
+    <script src="/js/traceChart.js"></script>
+    <script src="/js/app.js"></script>
 </body>
 </html>

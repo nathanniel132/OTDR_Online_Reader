@@ -595,7 +595,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (elements.uploadProgress) elements.uploadProgress.classList.remove('d-none');
         if (elements.uploadProgressBar) elements.uploadProgressBar.style.width = '45%';
 
-        fetch('/api/otdr/parse', {
+        const apiBase = (window.OTDR_API_BASE || '').replace(/\/$/, '');
+        const parseUrl = apiBase ? `${apiBase}/api/otdr/parse` : '/api/otdr/parse';
+
+        fetch(parseUrl, {
             method: 'POST',
             body: formData
         })
@@ -678,7 +681,10 @@ document.addEventListener('DOMContentLoaded', () => {
             elements.btnLoadSample.disabled = true;
             elements.btnLoadSample.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span> Memuat...';
 
-            fetch('/api/otdr/sample')
+            const apiBase = (window.OTDR_API_BASE || '').replace(/\/$/, '');
+            const sampleUrl = apiBase ? `${apiBase}/api/otdr/sample` : '/api/otdr/sample';
+
+            fetch(sampleUrl)
                 .then(res => res.json())
                 .then(res => {
                     elements.btnLoadSample.disabled = false;
