@@ -1,0 +1,212 @@
+/* Modern Professional Style for OTDR Viewer & Analyzer */
+
+:root {
+    --primary-color: #0284c7;
+    --primary-dark: #0369a1;
+    --sidebar-bg: #f8fafc;
+    --sidebar-border: #e2e8f0;
+    --card-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #f1f5f9;
+    color: #1e293b;
+}
+
+/* Custom Typography & Utility */
+.extra-small {
+    font-size: 0.75rem;
+}
+
+.text-purple {
+    color: #7c3aed !important;
+}
+
+/* Sidebar & Groups */
+.sidebar {
+    background-color: var(--sidebar-bg);
+    border-right: 1px solid var(--sidebar-border);
+    min-height: calc(100vh - 65px);
+}
+
+.sidebar .dropdown-menu {
+    z-index: 1055;
+}
+
+.group-card {
+    background: #ffffff;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+}
+
+.group-header {
+    background: #f8fafc !important;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.trace-item {
+    transition: all 0.15s ease-in-out;
+    border: 1px solid transparent;
+}
+
+.trace-item:hover {
+    background-color: #f1f5f9;
+}
+
+.trace-item.active-trace {
+    background-color: #e0f2fe !important;
+    border-color: #7dd3fc !important;
+}
+
+/* Drop Zone Area */
+.drop-zone {
+    border: 2px dashed #cbd5e1;
+    border-radius: 8px;
+    background-color: #ffffff;
+    transition: all 0.2s ease-in-out;
+}
+
+.drop-zone.drag-active {
+    border-color: #0284c7;
+    background-color: #f0f9ff;
+    transform: scale(1.01);
+}
+
+/* Chart Container & Placeholder Toggle */
+#chartPlaceholder.d-none {
+    display: none !important;
+}
+#chartPlaceholder:not(.d-none) {
+    display: flex !important;
+}
+#traceChartContainer.d-none {
+    display: none !important;
+}
+#traceChartContainer:not(.d-none) {
+    display: block !important;
+}
+
+#traceChartContainer {
+    min-height: 480px;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 8px;
+}
+
+/* Top Metrics Cards */
+.metric-card {
+    min-height: 72px;
+}
+
+.metric-label {
+    min-height: 28px;
+    line-height: 1.15;
+    display: flex;
+    align-items: flex-start;
+    overflow: hidden;
+}
+
+.metric-value {
+    line-height: 1.2;
+    margin-top: auto;
+    max-width: 100%;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#metricDevice.metric-value {
+    font-size: 0.875rem;
+}
+
+/* Chart Header & Toolbar */
+.chart-header-bar {
+    row-gap: 0.5rem;
+}
+
+.chart-title-group {
+    min-width: 0;
+    flex: 1 1 auto;
+}
+
+.chart-toolbar {
+    flex: 0 0 auto;
+}
+
+.chart-toolbar .btn,
+#unitToggleGroup .btn {
+    min-height: 32px;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#unitToggleGroup .btn {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+}
+
+/* Custom Marker Chips */
+.custom-marker-chip {
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.custom-marker-chip:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1) !important;
+}
+
+/* Events Table */
+.table-danger-light {
+    background-color: #fef2f2 !important;
+}
+
+/* Print Layout Optimization (@media print) */
+@media print {
+    body {
+        background-color: #ffffff !important;
+        font-size: 11pt;
+    }
+
+    /* Hide Navigation, Sidebar, Upload controls, Modals, Action buttons */
+    .navbar,
+    .sidebar,
+    .no-print,
+    .btn,
+    .drop-zone,
+    .dropdown,
+    #uploadProgress {
+        display: none !important;
+    }
+
+    .main-content {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .card {
+        border: 1px solid #cccccc !important;
+        box-shadow: none !important;
+        break-inside: avoid;
+    }
+
+    #traceChartContainer {
+        height: 380px !important;
+        min-height: 380px !important;
+    }
+
+    .print-only-header {
+        display: block !important;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #000000;
+        padding-bottom: 10px;
+    }
+}
+
+.print-only-header {
+    display: none;
+}
