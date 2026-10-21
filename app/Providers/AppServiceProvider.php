@@ -19,6 +19,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Pastikan folder compiled views dibuat jika di environment serverless /tmp
+        $viewPath = config('view.compiled');
+        if ($viewPath && ! is_dir($viewPath)) {
+            @mkdir($viewPath, 0755, true);
+        }
     }
 }
