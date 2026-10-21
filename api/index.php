@@ -1,16 +1,18 @@
 <?php
 
-// Normalisasi URL untuk runtime Vercel PHP serverless:
-// Ketika Vercel melakukan route ke /api/index.php, $_SERVER['REQUEST_URI']
-// sering kali diset menjadi "/api/index.php" atau path tanpa prefix.
-if (isset($_SERVER['HTTP_X_NOW_ROUTE']) || isset($_SERVER['VERCEL_URL']) || isset($_ENV['VERCEL_URL'])) {
-    if (isset($_SERVER['HTTP_X_FORWARDED_URI'])) {
-        $_SERVER['REQUEST_URI'] = $_SERVER['HTTP_X_FORWARDED_URI'];
-    } elseif (isset($_SERVER['HTTP_X_ORIGINAL_URI'])) {
-        $_SERVER['REQUEST_URI'] = $_SERVER['HTTP_X_ORIGINAL_URI'];
-    } elseif (isset($_SERVER['HTTP_X_REWRITE_URL'])) {
-        $_SERVER['REQUEST_URI'] = $_SERVER['HTTP_X_REWRITE_URL'];
-    }
+// Logging debug untuk inspect $_SERVER di Vercel
+if (isset($_GET['__dump_server'])) {
+    header('Content-Type: application/json');
+    echo json_encode([
+        'REQUEST_URI' => $_SERVER['REQUEST_URI'] ?? null,
+        'SCRIPT_NAME' => $_SERVER['SCRIPT_NAME'] ?? null,
+        'PATH_INFO' => $_SERVER['PATH_INFO'] ?? null,
+        'PHP_SELF' => $_SERVER['PHP_SELF'] ?? null,
+        'QUERY_STRING' => $_SERVER['QUERY_STRING'] ?? null,
+        'HTTP_X_NOW_ROUTE' => $_SERVER['HTTP_X_NOW_ROUTE'] ?? null,
+        'HTTP_X_FORWARDED_URI' => $_SERVER['HTTP_X_FORWARDED_URI'] ?? null,
+    ], JSON_PRETTY_PRINT);
+    exit;
 }
 
 chdir(__DIR__ . '/..');
